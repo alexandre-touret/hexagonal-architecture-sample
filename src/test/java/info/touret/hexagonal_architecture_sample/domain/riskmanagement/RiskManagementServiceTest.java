@@ -13,6 +13,8 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskStatus.NEED_AUTHORIZATION;
 import static org.mockito.Mockito.when;
 
@@ -33,19 +35,19 @@ class RiskManagementServiceTest {
 
     @Test
     void should_return_authorized() throws Exception {
-        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(new RiskAnalysis(RiskStatus.SAFE, "Safe"));
-        Assertions.assertEquals(RiskStatus.SAFE, riskManagementService.analyse(new Payment(20L)).status());
+        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(Optional.of(new RiskAnalysis(RiskStatus.SAFE, "Safe")));
+        Assertions.assertEquals(RiskStatus.SAFE, riskManagementService.analyse(new Payment(20L)).get().status());
     }
 
     @Test
     void should_return_dangerous() throws Exception {
-        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(new RiskAnalysis(RiskStatus.DANGEROUS, "Dangerous"));
-        Assertions.assertEquals(RiskStatus.DANGEROUS, riskManagementService.analyse(new Payment(200000L)).status());
+        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(Optional.of(new RiskAnalysis(RiskStatus.DANGEROUS, "Dangerous")));
+        Assertions.assertEquals(RiskStatus.DANGEROUS, riskManagementService.analyse(new Payment(200000L)).get().status());
     }
 
     @Test
     void should_return_needs_authorization() throws Exception {
-        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(new RiskAnalysis(NEED_AUTHORIZATION, "Dangerous"));
-        Assertions.assertEquals(NEED_AUTHORIZATION, riskManagementService.analyse(new Payment(1500L)).status());
+        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(Optional.of(new RiskAnalysis(NEED_AUTHORIZATION, "Dangerous")));
+        Assertions.assertEquals(NEED_AUTHORIZATION, riskManagementService.analyse(new Payment(1500L)).get().status());
     }
 }

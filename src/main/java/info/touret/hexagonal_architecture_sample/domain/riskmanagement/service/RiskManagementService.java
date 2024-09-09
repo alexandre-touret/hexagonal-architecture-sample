@@ -5,6 +5,8 @@ import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.Ris
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.port.RiskPort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 public class RiskManagementService {
 
     public static final int MAX_AUTHORIZED = 1000;
@@ -15,7 +17,7 @@ public class RiskManagementService {
         this.riskAdapter = riskAdapter;
     }
 
-    public RiskAnalysis analyse(Payment payment) {
+    public Optional<RiskAnalysis> analyse(Payment payment) {
         return riskAdapter.getCorrespondingRiskStatus(payment.amount());
     }
 }

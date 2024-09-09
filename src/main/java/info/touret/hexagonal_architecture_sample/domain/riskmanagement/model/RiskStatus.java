@@ -1,5 +1,7 @@
 package info.touret.hexagonal_architecture_sample.domain.riskmanagement.model;
 
-public enum RiskStatus {
+import java.io.Serializable;
+
+public enum RiskStatus implements Serializable {
     SAFE,DANGEROUS,NEED_AUTHORIZATION
 }

@@ -1,4 +1,4 @@
-package info.touret.hexagonal_architecture_sample.infrastructure.dto;
+package info.touret.hexagonal_architecture_sample.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskStatus;

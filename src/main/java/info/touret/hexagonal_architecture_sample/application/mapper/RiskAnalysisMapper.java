@@ -1,7 +1,7 @@
-package info.touret.hexagonal_architecture_sample.infrastructure.mapper;
+package info.touret.hexagonal_architecture_sample.application.mapper;
 
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskAnalysis;
-import info.touret.hexagonal_architecture_sample.infrastructure.dto.RiskAnalysisDTO;
+import info.touret.hexagonal_architecture_sample.application.dto.RiskAnalysisDTO;
 import org.mapstruct.Mapper;
 
 @Mapper

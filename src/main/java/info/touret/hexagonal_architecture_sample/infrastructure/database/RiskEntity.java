@@ -1,20 +1,35 @@
 package info.touret.hexagonal_architecture_sample.infrastructure.database;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
+@Table(name = "risks")
 public class RiskEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    public RiskEntity(Long id, Long amountMax, Long amountMin, String ruleName, String message) {
+        this.id = id;
+        this.amountMax = amountMax;
+        this.amountMin = amountMin;
+        this.ruleName = ruleName;
+        this.message = message;
+    }
+
+    public RiskEntity() {
+    }
+
+    @Column(name = "amountMax")
     private Long amountMax;
+    @Column(name = "amountMin")
     private Long amountMin;
+    @Column(name = "ruleName")
     private String ruleName;
+    @Column(name = "message")
     private String message;
 
     public Long getAmountMax() {

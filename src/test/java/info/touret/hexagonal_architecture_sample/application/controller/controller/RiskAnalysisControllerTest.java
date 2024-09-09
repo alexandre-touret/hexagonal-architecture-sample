@@ -1,13 +1,15 @@
-package info.touret.hexagonal_architecture_sample.infrastructure.controller;
+package info.touret.hexagonal_architecture_sample.application.controller.controller;
 
+import info.touret.hexagonal_architecture_sample.application.dto.RiskAnalysisDTO;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskStatus;
-import info.touret.hexagonal_architecture_sample.infrastructure.dto.RiskAnalysisDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URISyntaxException;
@@ -16,7 +18,9 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
+
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@Sql("classpath:/risks-data.sql")
 class RiskAnalysisControllerTest {
 
     public static final String API_PREFIX = "/risks";
@@ -35,8 +39,10 @@ class RiskAnalysisControllerTest {
 
     @Test
     void should_return_safe() throws URISyntaxException {
-        var analysisRequest = UriComponentsBuilder.fromHttpUrl(risksUrl).queryParam("amount", 500L).build();
+        var analysisRequest = UriComponentsBuilder.fromHttpUrl(risksUrl).queryParam("amount", 400L).build();
         var riskAnalysis = testRestTemplate.getForEntity(analysisRequest.toUri(), RiskAnalysisDTO.class);
-        assertEquals(RiskStatus.SAFE, Objects.requireNonNull(riskAnalysis.getBody()).status());
+        var body = riskAnalysis.getBody();
+        assertEquals(HttpStatus.OK.is2xxSuccessful(), riskAnalysis.getStatusCode().is2xxSuccessful());
+        assertEquals(RiskStatus.SAFE, Objects.requireNonNull(body).status());
     }
 }

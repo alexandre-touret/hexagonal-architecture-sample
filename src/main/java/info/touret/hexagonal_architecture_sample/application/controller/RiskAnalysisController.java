@@ -1,9 +1,9 @@
-package info.touret.hexagonal_architecture_sample.infrastructure.controller;
+package info.touret.hexagonal_architecture_sample.application.controller;
 
+import info.touret.hexagonal_architecture_sample.application.dto.RiskAnalysisDTO;
+import info.touret.hexagonal_architecture_sample.application.mapper.RiskAnalysisMapper;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.Payment;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskManagementService;
-import info.touret.hexagonal_architecture_sample.infrastructure.dto.RiskAnalysisDTO;
-import info.touret.hexagonal_architecture_sample.infrastructure.mapper.RiskAnalysisMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +22,8 @@ public class RiskAnalysisController {
 
     @GetMapping("/risks")
     public ResponseEntity<RiskAnalysisDTO> getRiskAnalysis(@RequestParam("amount") Long amount) {
-        return ResponseEntity.ok(riskAnalysisMapper.toRiskAnalysisDTO(riskManagementService.analyse(new Payment(amount))));
+        var optionalRiskAnalysis = riskManagementService.analyse(new Payment(amount));
+        System.err.println("RISKS"+optionalRiskAnalysis);
+        return optionalRiskAnalysis.map(riskAnalysis -> ResponseEntity.ok(riskAnalysisMapper.toRiskAnalysisDTO(riskAnalysis))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

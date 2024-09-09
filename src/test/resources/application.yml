@@ -10,3 +10,11 @@ spring:
       format_sql: true
       generate_statistics: true
       use-new-id-generator-mappings: false
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+        type: trace
