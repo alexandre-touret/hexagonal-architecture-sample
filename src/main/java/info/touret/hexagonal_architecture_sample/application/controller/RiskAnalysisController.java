@@ -4,6 +4,7 @@ import info.touret.hexagonal_architecture_sample.application.dto.RiskAnalysisDTO
 import info.touret.hexagonal_architecture_sample.application.mapper.RiskAnalysisMapper;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.Payment;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskManagementService;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

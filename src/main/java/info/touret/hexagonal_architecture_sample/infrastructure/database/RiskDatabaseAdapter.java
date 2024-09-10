@@ -23,7 +23,7 @@ public class RiskDatabaseAdapter implements RiskPort {
         
         return rule.flatMap(riskEntity -> (switch (riskEntity.getRuleName()) {
             case "SAFE" -> Optional.of(new RiskAnalysis(SAFE, riskEntity.getMessage()));
-            case "DANGEROUS" -> Optional.of(new RiskAnalysis(DANGEROUS, riskEntity.getMessage()));
+            case "SUSPICIOUS" -> Optional.of(new RiskAnalysis(SUSPICIOUS, riskEntity.getMessage()));
             default -> Optional.of(new RiskAnalysis(NEED_AUTHORIZATION, riskEntity.getMessage()));
         }));
     }

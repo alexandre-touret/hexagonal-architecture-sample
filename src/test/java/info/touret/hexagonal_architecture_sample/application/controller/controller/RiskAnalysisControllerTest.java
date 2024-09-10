@@ -45,4 +45,20 @@ class RiskAnalysisControllerTest {
         assertEquals(HttpStatus.OK.is2xxSuccessful(), riskAnalysis.getStatusCode().is2xxSuccessful());
         assertEquals(RiskStatus.SAFE, Objects.requireNonNull(body).status());
     }
+    @Test
+    void should_return_needs_authorization() throws URISyntaxException {
+        var analysisRequest = UriComponentsBuilder.fromHttpUrl(risksUrl).queryParam("amount", 600L).build();
+        var riskAnalysis = testRestTemplate.getForEntity(analysisRequest.toUri(), RiskAnalysisDTO.class);
+        var body = riskAnalysis.getBody();
+        assertEquals(HttpStatus.OK.is2xxSuccessful(), riskAnalysis.getStatusCode().is2xxSuccessful());
+        assertEquals(RiskStatus.NEED_AUTHORIZATION, Objects.requireNonNull(body).status());
+    }
+    @Test
+    void should_return_suspicious() throws URISyntaxException {
+        var analysisRequest = UriComponentsBuilder.fromHttpUrl(risksUrl).queryParam("amount", 6000L).build();
+        var riskAnalysis = testRestTemplate.getForEntity(analysisRequest.toUri(), RiskAnalysisDTO.class);
+        var body = riskAnalysis.getBody();
+        assertEquals(HttpStatus.OK.is2xxSuccessful(), riskAnalysis.getStatusCode().is2xxSuccessful());
+        assertEquals(RiskStatus.SUSPICIOUS, Objects.requireNonNull(body).status());
+    }
 }

@@ -40,14 +40,14 @@ class RiskManagementServiceTest {
     }
 
     @Test
-    void should_return_dangerous() throws Exception {
-        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(Optional.of(new RiskAnalysis(RiskStatus.DANGEROUS, "Dangerous")));
-        Assertions.assertEquals(RiskStatus.DANGEROUS, riskManagementService.analyse(new Payment(200000L)).get().status());
+    void should_return_SUSPICIOUS() throws Exception {
+        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(Optional.of(new RiskAnalysis(RiskStatus.SUSPICIOUS, "SUSPICIOUS")));
+        Assertions.assertEquals(RiskStatus.SUSPICIOUS, riskManagementService.analyse(new Payment(200000L)).get().status());
     }
 
     @Test
     void should_return_needs_authorization() throws Exception {
-        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(Optional.of(new RiskAnalysis(NEED_AUTHORIZATION, "Dangerous")));
+        when(riskAdapter.getCorrespondingRiskStatus(ArgumentMatchers.anyLong())).thenReturn(Optional.of(new RiskAnalysis(NEED_AUTHORIZATION, "SUSPICIOUS")));
         Assertions.assertEquals(NEED_AUTHORIZATION, riskManagementService.analyse(new Payment(1500L)).get().status());
     }
 }

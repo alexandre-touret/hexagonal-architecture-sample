@@ -10,7 +10,7 @@ import java.util.Optional;
 public class RiskManagementService {
 
     public static final int MAX_AUTHORIZED = 1000;
-    public static final int MIN_DANGEROUS = 2000;
+    public static final int MIN_SUSPICIOUS = 2000;
     private final RiskPort riskAdapter;
 
     public RiskManagementService(RiskPort riskAdapter) {
