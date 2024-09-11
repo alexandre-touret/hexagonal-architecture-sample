@@ -1,5 +1,8 @@
-package info.touret.hexagonal_architecture_sample.infrastructure.database;
+package info.touret.hexagonal_architecture_sample.test.infrastructure.database;
 
+import info.touret.hexagonal_architecture_sample.infrastructure.database.RiskDatabaseAdapter;
+import info.touret.hexagonal_architecture_sample.infrastructure.database.RiskEntity;
+import info.touret.hexagonal_architecture_sample.infrastructure.database.RiskRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

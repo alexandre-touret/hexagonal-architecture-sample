@@ -1,10 +1,10 @@
-package info.touret.hexagonal_architecture_sample.domain.riskmanagement;
+package info.touret.hexagonal_architecture_sample.test.domain;
 
+import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskManagementService;
+import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskPort;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.Payment;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskAnalysis;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskStatus;
-import info.touret.hexagonal_architecture_sample.domain.riskmanagement.port.RiskPort;
-import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskManagementService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

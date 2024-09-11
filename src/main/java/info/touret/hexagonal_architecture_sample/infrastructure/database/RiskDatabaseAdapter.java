@@ -1,7 +1,7 @@
 package info.touret.hexagonal_architecture_sample.infrastructure.database;
 
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskAnalysis;
-import info.touret.hexagonal_architecture_sample.domain.riskmanagement.port.RiskPort;
+import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskPort;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package info.touret.hexagonal_architecture_sample.domain.riskmanagement.port;
+package info.touret.hexagonal_architecture_sample.domain.riskmanagement.service;
 
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskAnalysis;
 

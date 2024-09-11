@@ -1,4 +1,4 @@
-package info.touret.hexagonal_architecture_sample.application.controller.controller;
+package info.touret.hexagonal_architecture_sample.test.application.controller.controller;
 
 import info.touret.hexagonal_architecture_sample.application.dto.RiskAnalysisDTO;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.model.RiskStatus;
