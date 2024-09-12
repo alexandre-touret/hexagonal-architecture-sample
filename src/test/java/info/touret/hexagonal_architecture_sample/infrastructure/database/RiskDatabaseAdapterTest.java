@@ -1,4 +1,4 @@
-package info.touret.hexagonal_architecture_sample.test.infrastructure.database;
+package info.touret.hexagonal_architecture_sample.infrastructure.database;
 
 import info.touret.hexagonal_architecture_sample.infrastructure.database.RiskDatabaseAdapter;
 import info.touret.hexagonal_architecture_sample.infrastructure.database.RiskEntity;

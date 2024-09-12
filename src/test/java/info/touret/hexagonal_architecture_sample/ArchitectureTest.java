@@ -1,30 +1,24 @@
 package info.touret.hexagonal_architecture_sample;
 
-import com.tngtech.archunit.core.domain.JavaClasses;
-import com.tngtech.archunit.core.importer.ClassFileImporter;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.tngtech.archunit.core.importer.ImportOption.DoNotIncludeTests;
+import com.tngtech.archunit.junit.AnalyzeClasses;
+import com.tngtech.archunit.junit.ArchTest;
+import com.tngtech.archunit.lang.ArchRule;
 
 import static com.tngtech.archunit.library.Architectures.onionArchitecture;
 
+@AnalyzeClasses(packages = {"info.touret.hexagonal_architecture_sample.application",
+                            "info.touret.hexagonal_architecture_sample.domain",
+                            "info.touret.hexagonal_architecture_sample.infrastructure"},
+                importOptions = DoNotIncludeTests.class)
 public class ArchitectureTest {
 
-    private JavaClasses classes;
+    @ArchTest
+    public static final ArchRule should_return_hexagonal_architecture_is_respected =
+            onionArchitecture().domainModels("..domain.(**).model..")
+                    .domainServices("..domain.(**).service..")
+                    .applicationServices("..application..")
+                    .adapter("persistence", "..infrastructure.database..");
 
-    @BeforeEach
-    void setUp() {
-        classes = new ClassFileImporter().importPackages("info.touret.hexagonal_architecture_sample.application",
-                "info.touret.hexagonal_architecture_sample.domain",
-                "info.touret.hexagonal_architecture_sample.infrastructure");
-//        classes = new ClassFileImporter().importPackages(HexagonalArchitectureSampleApplication.class.getPackageName()).that(DescribedPredicate.not(  DescribedPredicate.or(JavaClass.Predicates.simpleNameEndingWith("Test"),JavaClass.Predicates.simpleNameEndingWith("Tests"))));
-    }
-
-    @Test
-    public void should_return_hexagonal_architecture_is_respected() {
-        onionArchitecture().domainModels("..info.touret.hexagonal_architecture_sample.domain.riskmanagement.model..")
-                .domainServices("..hexagonal_architecture_sample.domain.riskmanagement.service..")
-                .applicationServices("..hexagonal_architecture_sample.application..")
-                .adapter("persistence", "..hexagonal_architecture_sample.infrastructure.database..").check(classes);
-
-    }
 }
+

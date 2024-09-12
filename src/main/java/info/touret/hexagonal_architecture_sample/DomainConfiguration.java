@@ -1,7 +1,7 @@
 package info.touret.hexagonal_architecture_sample;
 
-import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskPort;
 import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskManagementService;
+import info.touret.hexagonal_architecture_sample.domain.riskmanagement.service.RiskPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class DomainConfiguration {
 
     @Bean
-    public RiskManagementService createRiskManagementService(RiskPort riskDatabaseAdapter) {
-        return new RiskManagementService(riskDatabaseAdapter);
+    public RiskManagementService createRiskManagementService(RiskPort riskPort) {
+        return new RiskManagementService(riskPort);
     }
 }
