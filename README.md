@@ -4,7 +4,7 @@
 
 * [This template](https://github.com/jaguililla/hexagonal_spring)
 * [Article on the Netflix Engineering blog](https://netflixtechblog.com/ready-for-changes-with-hexagonal-architecture-b315ec967749)
-* [Another intresting article](https://softengbook.org/articles/hexagonal-architecture)
+* [Another insightful article](https://softengbook.org/articles/hexagonal-architecture)
 
 ## Environment & tools
 
